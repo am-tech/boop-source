@@ -6,6 +6,7 @@ import registerForPushNotificationsAsync from '../api/registerForPushNotificatio
 
 import HomeScreen from '../screens/HomeScreen';
 import LoginScreen from '../screens/LoginScreen';
+import SuccessScreen from '../screens/SuccessScreen';
 
 const RootStackNavigator = StackNavigator(
   {
@@ -14,6 +15,9 @@ const RootStackNavigator = StackNavigator(
     },
     Home: {
       screen: HomeScreen,
+    },
+    Success: {
+      screen: SuccessScreen,
     },
   },
   {
