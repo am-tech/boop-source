@@ -38,17 +38,15 @@ export default class LoginScreen extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        apiKey: "addfdae0-fa76-449a-aa57-309581942550",
-        secret: "yTbohrq8B9b5kl9xuZBgCmI9GHvqKxKkJGw8x1MxMIrngKNvzQhUsvfU9GWXgS37vuJa3CiP"
+        apiKey: '7c92264f-1655-4d94-903d-eb918770ea20',
+        secret: 'bdwUyFvWGHrwd5seyfYykZKW6TDyoHSc1TbhS6eSe4Uf1MlL9KD63CE0sFxFekqjgcB414VB'
       }),
     })
       .then((response) => response.json())
-      .then((responseJson) => {
-        const { accessToken, expires, refreshToken } = responseJson;
+      .then(async (responseJson) => {
+        const { accessToken } = responseJson;
 
-        Expo.SecureStore.setItemAsync("accessToken", accessToken);
-        Expo.SecureStore.setItemAsync("expires", expires);
-        Expo.SecureStore.setItemAsync("refreshToken", refreshToken);
+        await Expo.SecureStore.setItemAsync("accessToken", accessToken);
   
         this.props.navigation.navigate('Home');
       })

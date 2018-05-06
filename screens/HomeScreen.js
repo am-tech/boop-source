@@ -14,10 +14,6 @@ import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
 
-const profiles = {
-  timothy: require('../profiles/timothy.json'),
-};
-
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
@@ -25,12 +21,10 @@ export default class HomeScreen extends React.Component {
 
   constructor() {
     super();
+
     this.state = {
-      accessToken: "token",
-      expires: "0",
-      refreshToken: "refresh",
-      establishment: "precisiondental",
-      patient: profiles['timothy'],
+      establishment: null,
+      patient: profiles['barbara'],
     };
   }
   render() {
@@ -43,22 +37,25 @@ export default class HomeScreen extends React.Component {
               selectedValue={this.state.establishment}
               style={[styles.establishmentSelection]}
               onValueChange={this._handleEstablishmentSelection}>
+              <Picker.Item label='Please select an option...' value='no-selection' />
               <Picker.Item label="Precision Dental" value="precisiondental" />
-              <Picker.Item label="HACK/HLTH Dentistry" value="hackhlthdentistry" />
-              <Picker.Item label="Get Well Soon Clinic" value="getwellsoonclinic" />
-              <Picker.Item label="Feel Better Clinic" value="feelbetterclinic" />
+              <Picker.Item label="Las Vegas Dentistry" value="lasvegasdentistry" />
+              <Picker.Item label="Absolute Dental" value="absolutedental" />
             </Picker>
             <Button 
               onPress={this._handleCheckInPress}
               style={[styles.checkInButton]}
               title="Check In"
               color="#3F7D20"
+              disabled={!this.state.establishment}
               accessibilityLabel="Check into this establishment"
               />
           </View>
           <View style={[styles.canvas]}>
             <Image
-              source={establishments[this.state.establishment]}
+              source={this.state.establishment 
+                ? establishments[this.state.establishment].uri 
+                : require('../assets/images/default.png')}
               resizeMode="contain"
               style={[styles.canvas]}
             />
@@ -68,77 +65,64 @@ export default class HomeScreen extends React.Component {
     );
   }
 
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
-
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use useful development
-          tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
-  }
-
   _handleLearnMorePress = () => {
     WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
   };
 
-  _handleEstablishmentSelection = (itemValue, itemIndex) => {
-    this.setState({
-      establishment: itemValue
-    });
+  _handleEstablishmentSelection = (itemValue) => {
+    if (itemValue !== 'no-selection') {
+      this.setState({
+        establishment: itemValue
+      });
+    }
   };
 
-  _handleCheckInPress = () => {
-    fetch('https://api.redoxengine.com/auth/authenticate', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+  _handleCheckInPress = async () => {
+    const accessToken = await Expo.SecureStore.getItemAsync("accessToken");
+    const payload = this.state.patient;
+
+    payload.Meta.Destinations = [
+      {
+        ID: establishments[this.state.establishment].id,
+        Name: 'HackHLTH2018',
       },
-      body: JSON.stringify({
-        apiKey: "addfdae0-fa76-449a-aa57-309581942550",
-        secret: "yTbohrq8B9b5kl9xuZBgCmI9GHvqKxKkJGw8x1MxMIrngKNvzQhUsvfU9GWXgS37vuJa3CiP"
-      }),
-    })
-      .then((response) => response.json())
-      .then((responseJson) => {
-        const { accessToken, expires, refreshToken } = responseJson;
+    ];
 
-        Expo.SecureStore.setItemAsync("accessToken", accessToken);
-        Expo.SecureStore.setItemAsync("expires", expires);
-        Expo.SecureStore.setItemAsync("refreshToken", refreshToken);
-
-        this.setState({
-          accessToken,
-          expires,
-          refreshToken
-        });
-      })
-      .catch((error) => {
-        console.error(error);
+    try {
+      const response = await fetch('https://api.redoxengine.com/endpoint', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify(payload),
       });
+    } catch (e) {
+      console.warn('uh oh!', e);
+    }
   };
 }
 
 const establishments = {
-  feelbetterclinic: require('../assets/images/feelbetterclinic.png'),
-  precisiondental: require('../assets/images/precisiondental.png'),
-  hackhlthdentistry: require('../assets/images/hackhlthdentistry.png'),
-  getwellsoonclinic: require('../assets/images/getwellsoonclinic.png'),
-}
+  lasvegasdentistry: {
+    uri: require('../assets/images/lasvegasdentistry.png'),
+    id: 'f91b0c80-8038-404c-996a-c19d81fc8133',
+  },
+  precisiondental: {
+    uri: require('../assets/images/precisiondental.png'),
+    id: 'f91b0c80-8038-404c-996a-c19d81fc8133',
+  },
+  absolutedental: {
+    uri: require('../assets/images/absolutedental.png'),
+    id: 'f91b0c80-8038-404c-996a-c19d81fc8133',
+  },
+};
+
+const profiles = {
+  timothy: require('../profiles/timothy.json'),
+  barbara: require('../profiles/barbara.json'),
+};
+
 
 const styles = StyleSheet.create({
   container: {
