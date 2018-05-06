@@ -31,8 +31,10 @@ export default class App extends React.Component {
   _loadResourcesAsync = async () => {
     return Promise.all([
       Asset.loadAsync([
-        require('./assets/images/robot-dev.png'),
-        require('./assets/images/robot-prod.png'),
+        require('./assets/images/feelbetterclinic.png'),
+        require('./assets/images/precisiondental.png'),
+        require('./assets/images/hackhlthdentistry.png'),
+        require('./assets/images/getwellsoonclinic.png'),
       ]),
       Font.loadAsync({
         // This is the font that we are using for our tab bar
@@ -40,6 +42,8 @@ export default class App extends React.Component {
         // We include SpaceMono because we use it in HomeScreen.js. Feel free
         // to remove this if you are not using it in your app
         'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
+        'ibm-plex-mono-light': require('./assets/fonts/IBMPlexMono-Light.ttf'),
+        'ibm-plex-mono-bold': require('./assets/fonts/IBMPlexMono-Bold.ttf')
       }),
     ]);
   };
