@@ -1,0 +1,214 @@
+{
+  "Meta": {
+		"DataModel": "PatientAdmin",
+		"EventType": "NewPatient",
+		"EventDateTime": "2018-05-04T06:22:32.068Z",
+		"Test": true,
+		"Destinations": [],
+		"FacilityCode": null
+	},
+	"Patient": {
+		"Identifiers": [
+			{
+				"ID": "0000000002",
+				"IDType": "MR"
+			},
+			{
+				"ID": "81ac9647-3a07-46b7-85b4-c5d09099fb3b",
+				"IDType": "EHRID"
+			},
+			{
+				"ID": "ffc486eff2b04b8^^^&1.3.6.1.4.1.21367.2005.13.20.1000&ISO",
+				"IDType": "NIST"
+			}
+		],
+		"Demographics": {
+			"FirstName": "Barbara",
+			"MiddleName": null,
+			"LastName": "Bixby",
+			"DOB": "1982-07-24",
+			"SSN": "202-02-0002",
+			"Sex": "Female",
+			"Race": "White",
+			"IsHispanic": null,
+			"MaritalStatus": "Married",
+			"IsDeceased": null,
+			"DeathDateTime": null,
+			"PhoneNumber": {
+				"Home": "+18088675303",
+				"Office": "+17077543758",
+				"Mobile": "+19189368865"
+			},
+			"EmailAddresses": [
+				"barb.bixby@test.net"
+			],
+			"Language": "en",
+			"Citizenship": [],
+			"Address": {
+				"StreetAddress": "4762 Hickory Street",
+				"City": "Monroe",
+				"State": "WI",
+				"ZIP": "53566",
+				"County": "Green",
+				"Country": "US"
+			}
+		},
+		"Notes": [],
+		"Contacts": [
+			{
+				"FirstName": "Timothy",
+				"MiddleName": "Paul",
+				"LastName": "Bixby",
+				"Address": {
+					"StreetAddress": "4762 Hickory Street",
+					"City": "Monroe",
+					"State": "WI",
+					"ZIP": "53566",
+					"County": "Green",
+					"Country": "US"
+				},
+				"PhoneNumber": {
+					"Home": "+18088675301",
+					"Office": null,
+					"Mobile": null
+				},
+				"RelationToPatient": "Son",
+				"EmailAddresses": [],
+				"Roles": [
+					"Emergency Contact"
+				]
+			}
+		],
+		"Allergies": [
+			{
+				"Code": "7982",
+				"Codeset": "RxNorm",
+				"Name": "Penicillin",
+				"OnsetDateTime": null,
+				"Reaction": [
+					{
+						"Code": "28926001",
+						"Codeset": "SNOMED CT",
+						"Name": "Rash"
+					},
+					{
+						"Code": "247472004",
+						"Codeset": "SNOMED CT",
+						"Name": "Hives"
+					}
+				]
+			}
+		],
+		"PCP": {
+			"NPI": "8263749385",
+			"ID": "8263749385",
+			"IDType": "NPI",
+			"FirstName": "Jim",
+			"LastName": "Mica",
+			"Credentials": [
+				"RN"
+			],
+			"Address": {
+				"StreetAddress": "5235 Kennedy Ave.",
+				"City": "Creve Cour",
+				"State": "MO",
+				"ZIP": "63141",
+				"County": "Saint Louis",
+				"Country": "USA"
+			},
+			"Location": {
+				"Type": null,
+				"Facility": null,
+				"Department": null,
+				"Room": null
+			},
+			"PhoneNumber": {
+				"Office": "+13145557777"
+			}
+		},
+		"Guarantor": {
+			"Number": "8987398324",
+			"FirstName": "Kent",
+			"LastName": "Bixby",
+			"DOB": null,
+			"Sex": null,
+			"Spouse": {
+				"FirstName": "Barbara",
+				"LastName": "Bixby"
+			},
+			"Address": {
+				"StreetAddress": "4762 Hickory Street",
+				"City": "Monroe",
+				"State": "WI",
+				"ZIP": "53566",
+				"County": "Green",
+				"Country": "USA"
+			},
+			"PhoneNumber": {
+				"Home": null,
+				"Business": null
+			},
+			"Type": "Individual",
+			"RelationToPatient": "Spouse",
+			"Employer": {
+				"Name": "Accelerator Labs",
+				"Address": {
+					"StreetAddress": "1456 Old Sauk Road",
+					"City": "Madison",
+					"State": "WI",
+					"ZIP": "53719",
+					"County": "Dane",
+					"Country": "USA"
+				},
+				"PhoneNumber": null
+			}
+		},
+		"Insurances": [
+			{
+				"Plan": {
+					"ID": "31572",
+					"IDType": "Payor ID",
+					"Name": "HMO Deductable Plan",
+					"Type": null
+				},
+				"MemberNumber": null,
+				"Company": {
+					"ID": "60054",
+					"IDType": null,
+					"Name": "aetna (60054 0131)",
+					"Address": {
+						"StreetAddress": "PO Box 14080",
+						"City": "Lexington",
+						"State": "KY",
+						"ZIP": "40512-4079",
+						"County": "Fayette",
+						"Country": "US"
+					},
+					"PhoneNumber": "+18089541123"
+				},
+				"GroupNumber": "847025-024-0009",
+				"GroupName": "Accelerator Labs",
+				"EffectiveDate": "2015-01-01",
+				"ExpirationDate": "2020-12-31",
+				"PolicyNumber": "9140860055",
+				"AgreementType": null,
+				"CoverageType": null,
+				"Insured": {
+					"LastName": null,
+					"FirstName": null,
+					"Relationship": null,
+					"DOB": null,
+					"Sex": null,
+					"Address": {
+						"StreetAddress": null,
+						"City": null,
+						"State": null,
+						"ZIP": null,
+						"County": null,
+						"Country": null
+					}
+				}
+			}
+		]
+	}
+}
