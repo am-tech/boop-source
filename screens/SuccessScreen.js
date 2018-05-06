@@ -24,12 +24,17 @@ export default class SuccessScreen extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.informationalContainer}>
+          <Image
+            source={require('../assets/images/boop.png')}
+            resizeMode="contain"
+            style={[styles.canvas]}
+          />
           <Text style={styles.message}>You're all set!</Text>
           <Text style={styles.informationalMessage}>Someone will be with you shortly.</Text>
         </View>
         <Button
             title="Return to selection"
-            color="#3F7D20"
+            color="#72B01D"
             onPress={this._handleReturnToSelection}
           />
       </View>
@@ -41,7 +46,7 @@ export default class SuccessScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#72B01D',
+    backgroundColor: '#3F7D20',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -49,7 +54,11 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     width: 300,
     alignItems: 'center'
-
+  },
+  canvas: {
+    alignItems: 'center',
+    width: 80,
+    height: 80
   },
   message: {
     fontSize: 60,
