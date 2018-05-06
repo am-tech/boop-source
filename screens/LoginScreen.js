@@ -10,25 +10,26 @@ import {
 import { ExpoLinksView } from '@expo/samples';
 
 export default class LoginScreen extends React.Component {
-  // static navigationOptions = {
-  //   title: 'Links',
-  // };
+  static navigationOptions = {
+    header: null,
+  };
 
   render() {
     return (
-      <ScrollView style={styles.container}>
-        <View>
+      <View style={styles.container}>
+        <View style={styles.login}>
           <Text style={styles.helloText}>Hello!</Text>
           <Button 
-              onPress={this._handleLogin}
-              title="Log In"
-              color="#3F7D20"
-              accessibilityLabel="Login to your Boop Account"
-            />
+            onPress={this._handleLogin}
+            title="Log In"
+            color="#3F7D20"
+            accessibilityLabel="Login to your Boop Account"
+          />
         </View>
-      </ScrollView>
+      </View>
     );
   }
+
   _handleLogin = () => {
     fetch('https://api.redoxengine.com/auth/authenticate', {
       method: 'POST',
@@ -41,13 +42,10 @@ export default class LoginScreen extends React.Component {
         secret: "yTbohrq8B9b5kl9xuZBgCmI9GHvqKxKkJGw8x1MxMIrngKNvzQhUsvfU9GWXgS37vuJa3CiP"
       }),
     })
-      .then((response) => {
-        console.log(response);
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((responseJson) => {
-        console.log(responseJson);
         const { accessToken, expires, refreshToken } = responseJson;
+
         Expo.SecureStore.setItemAsync("accessToken", accessToken);
         Expo.SecureStore.setItemAsync("expires", expires);
         Expo.SecureStore.setItemAsync("refreshToken", refreshToken);
@@ -65,6 +63,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#72B01D',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  login: {
+
   },
   helloText: {
     fontSize: 60,

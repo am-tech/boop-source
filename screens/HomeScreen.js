@@ -26,7 +26,6 @@ export default class HomeScreen extends React.Component {
       expires: "0",
       refreshToken: "refresh",
       establishment: "precisiondental",
-      // establishmentUri: '../assets/images/${this.state.establishment}.png',
       patient: {
         "Meta": {
           "DataModel": "PatientAdmin",
@@ -289,12 +288,6 @@ export default class HomeScreen extends React.Component {
             />
           </View>
         </ScrollView>
-
-        {/* <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>Access Token: {this.state.accessToken}</Text>
-          <Text style={styles.tabBarInfoText}>Expires: {this.state.expires}</Text>
-          <Text style={styles.tabBarInfoText}>Refresh Token: {this.state.refreshToken}</Text>
-        </View> */}
       </View>
     );
   }
@@ -344,13 +337,10 @@ export default class HomeScreen extends React.Component {
         secret: "yTbohrq8B9b5kl9xuZBgCmI9GHvqKxKkJGw8x1MxMIrngKNvzQhUsvfU9GWXgS37vuJa3CiP"
       }),
     })
-      .then((response) => {
-        console.log(response);
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((responseJson) => {
-        console.log(responseJson);
         const { accessToken, expires, refreshToken } = responseJson;
+        
         Expo.SecureStore.setItemAsync("accessToken", accessToken);
         Expo.SecureStore.setItemAsync("expires", expires);
         Expo.SecureStore.setItemAsync("refreshToken", refreshToken);
