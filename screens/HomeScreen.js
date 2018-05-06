@@ -45,9 +45,9 @@ export default class HomeScreen extends React.Component {
             <Button 
               onPress={this._handleCheckInPress}
               style={[styles.checkInButton]}
-              title="Check In"
+              title={!this.state.isLoading ? "Check In" : "Checking In..."}
               color="#3F7D20"
-              disabled={!this.state.establishment}
+              disabled={!this.state.establishment || this.state.isLoading}
               accessibilityLabel="Check into this establishment"
               />
           </View>
@@ -89,6 +89,7 @@ export default class HomeScreen extends React.Component {
     ];
 
     try {
+      this.setState({ isLoading: true });
       const response = await fetch('https://api.redoxengine.com/endpoint', {
         method: 'POST',
         headers: {
@@ -97,8 +98,12 @@ export default class HomeScreen extends React.Component {
         },
         body: JSON.stringify(payload),
       });
+
+      this.props.navigation.navigate('Success');
     } catch (e) {
       console.warn('uh oh!', e);
+    } finally {
+      this.setState({ isLoading: false });
     }
   };
 }
@@ -143,7 +148,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 30,
     marginTop: 20,
-    color: '#72B01D'
+    color: '#72B01D',
+    fontFamily: 'ibm-plex-mono-light',
   },
   canvas: {
     alignItems: 'center',
@@ -154,49 +160,8 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   establishmentSelection: {
-    width: 400,
+    alignItems: 'center',
+    width: 350,
     height: 100,
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center',
-  },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
   },
 });

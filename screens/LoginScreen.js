@@ -68,7 +68,8 @@ const styles = StyleSheet.create({
 
   },
   helloText: {
-    fontSize: 60,
+    fontSize: 45,
+    marginBottom: 50,
     fontFamily: 'ibm-plex-mono-bold',
     color: '#fff',
     textAlign: 'center'
