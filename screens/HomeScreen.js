@@ -59,6 +59,11 @@ export default class HomeScreen extends React.Component {
               resizeMode="contain"
               style={[styles.canvas]}
             />
+            <Image
+              source={require('../assets/images/boop.png')}
+              resizeMode="contain"
+              style={[styles.miniLogo]}
+            />
           </View>
         </ScrollView>
       </View>
@@ -155,6 +160,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     top: 0,
     left: 0,
+  },
+  miniLogo: {
+    alignItems: 'center',
+    width: 50,
+    height: 50,
+    marginTop: 30
   },
   fullEstablishmentSplash: {
     resizeMode: 'contain',

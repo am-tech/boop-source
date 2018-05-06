@@ -1,6 +1,7 @@
 import React from 'react';
 import { 
   Button,
+  Image,
   ScrollView,
   StyleSheet,
   Text,
@@ -17,6 +18,11 @@ export default class LoginScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <Image
+          source={require('../assets/images/boop.png')}
+          resizeMode="contain"
+          style={[styles.canvas]}
+        />
         <View style={styles.login}>
           <Text style={styles.helloText}>Hello!</Text>
           <Button 
@@ -60,18 +66,23 @@ export default class LoginScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#72B01D',
+    backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
   },
   login: {
 
   },
+  canvas: {
+    alignItems: 'center',
+    top: 0,
+    left: 0,
+  },
   helloText: {
     fontSize: 45,
     marginBottom: 50,
     fontFamily: 'ibm-plex-mono-bold',
-    color: '#fff',
+    color: '#72B01D',
     textAlign: 'center'
   }
 });
