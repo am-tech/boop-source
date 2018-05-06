@@ -24,7 +24,7 @@ export default class HomeScreen extends React.Component {
 
     this.state = {
       establishment: null,
-      patient: profiles['barbara'],
+      patient: profiles['adrienne'],
     };
   }
   render() {
@@ -130,7 +130,7 @@ const establishments = {
 
 const profiles = {
   timothy: require('../profiles/timothy.json'),
-  barbara: require('../profiles/barbara.json'),
+  adrienne: require('../profiles/adrienne.json'),
 };
 
 
